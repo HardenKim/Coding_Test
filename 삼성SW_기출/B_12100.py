@@ -118,7 +118,6 @@ def solution():
         dfs(move_right(copy.deepcopy(arr)), cnt+1)
         dfs(move_left(copy.deepcopy(arr)), cnt+1)
 
-
     dfs(B, 0)
     print(ret)
 
