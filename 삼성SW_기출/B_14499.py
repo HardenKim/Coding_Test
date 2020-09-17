@@ -2,6 +2,7 @@
 url : https://www.acmicpc.net/problem/14499
 problem : 주사위 굴리기
 algorithm : 시뮬레이션
+date : 2020.09.16
 """
 
 def solution():

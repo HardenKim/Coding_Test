@@ -2,6 +2,7 @@
 url : https://www.acmicpc.net/problem/13458
 problem : 시험 감독
 algorithm : 수학
+date : 2020.09.16
 """
 
 def solution():

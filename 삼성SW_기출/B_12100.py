@@ -1,7 +1,8 @@
 """
 url : https://www.acmicpc.net/problem/12100
 problem : 2048(Easy)
-algorithm : 브루트포스
+algorithm : 브루트 포스
+date : 2020.09.15
 """
 import copy
 N = int(input())

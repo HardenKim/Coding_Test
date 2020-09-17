@@ -2,6 +2,7 @@
 url : https://www.acmicpc.net/problem/13460
 problem : 구슬탈출2
 algorithm : BFS
+date : 2020.09.15
 """
 from collections import deque
 

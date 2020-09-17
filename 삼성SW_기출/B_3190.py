@@ -2,6 +2,7 @@
 url : https://www.acmicpc.net/problem/3190
 problem : 뱀
 algorithm : 시뮬레이션
+date : 2020.09.16
 """
 
 from collections import deque
