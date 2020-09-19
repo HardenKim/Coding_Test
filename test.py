@@ -10,6 +10,5 @@ for i in range(4):
         nx = x + location[j][0]
         ny = y + location[j][1]
         val += B[nx][ny]
-        print(i)
     except IndexError:
         continue

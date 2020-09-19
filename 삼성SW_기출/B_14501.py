@@ -1,13 +1,13 @@
 """
 url : https://www.acmicpc.net/problem/14501
 problem : 퇴사
-algorithm : DP
+algorithm : DP, DFS
 date : 2020.09.17
 """
 
 def solution(): 
     N = int(input()) 
-    L = list(list(map(int, input().split())) for _ in range(N))
+    L = [list(map(int, input().split())) for _ in range(N)]
     dp = [0]*N
 
     for i in range(N):
@@ -16,16 +16,17 @@ def solution():
             for j in range(i):
                 if j + L[j][0] <= i:
                     dp[i] = max(dp[i], dp[j]+L[i][1])
+                print(dp)
     return max(dp)
 print(solution())
 
-
 """ dfs(i) = max(dfs(i+1), dfs(i+T[i])+P[i]) """ 
+"""
 from collections import defaultdict
 ret = 0
 def solution():
     N = int(input()) 
-    L = list(list(map(int, input().split())) for _ in range(N))
+    L = [list(map(int, input().split())) for _ in range(N)]
     dp = defaultdict(int)
 
     def dfs(day):
@@ -44,3 +45,4 @@ def solution():
     dfs(0)
     return dp[0]
 print(solution())
+"""
