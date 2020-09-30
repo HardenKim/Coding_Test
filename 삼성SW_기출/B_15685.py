@@ -1,6 +1,6 @@
 """
-url : https://www.acmicpc.net/problem/15684
-problem : 사다리 조작
+url : https://www.acmicpc.net/problem/15685
+problem : 드래곤 커브
 algorithm : 브루트 포스
 date : 2020.09.22
 """
