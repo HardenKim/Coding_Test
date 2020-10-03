@@ -1,55 +1,49 @@
-"""
-url : https://www.acmicpc.net/problem/14501
-problem : 연구소
-algorithm : 브루트 포스 , DFS
-date : 2020.09.18
-"""
-import copy
-minVal, carr = float('inf'), []
-def solution():
-    N, M = map(int, input().split())
-    arr = [list(map(int, input().split())) for _ in range(N)]
-    room, virus_arr = 0, []    
-    global minVal, carr
+def rotate(c):
+    T, X, Y, Z, W = U, L, F, R, B
+    if c == 'L':
+        T, X, Y, Z, W = L, F, U, B, D
+    if c == 'F':
+        T, X, Y, Z, W = F, U, L, D, R
+    if c == 'R':
+        T, X, Y, Z, W = R, D, B, U, F
+    if c == 'B':
+        T, X, Y, Z, W = B, R, D, L, U
+    if c == 'D':
+        T, X, Y, Z, W = D, B, R, F, L
+    T[0][2], T[1][2], T[2][2], T[2][1], T[2][0], T[1][0], T[0][0], T[0][1] = \
+    T[0][0], T[0][1], T[0][2], T[1][2], T[2][2], T[2][1], T[2][0], T[1][0]
+    X[2][2], X[2][1], X[2][0], Y[2][0], Y[1][0], Y[0][0], Z[0][2], Z[1][2], Z[2][2], W[0][0], W[0][1], W[0][2] = \
+    Y[2][0], Y[1][0], Y[0][0], Z[0][2], Z[1][2], Z[2][2], W[0][0], W[0][1], W[0][2], X[2][2], X[2][1], X[2][0]
 
-    for i in range(N):
-        for j in range(M):
-            if arr[i][j] == 2:
-                virus_arr.append((i,j))
-            if arr[i][j] != 1:
-                room += 1
-
-    def dfs(x,y):
-        global minVal, carr
-        ret = 1
-        for dx, dy in (-1,0), (1,0), (0,-1), (0,1):
-            nx, ny = x+dx, y+dy
-            if nx < 0 or nx >= N or ny < 0 or ny >= M:
-                continue
-            if carr[nx][ny] == 0:
-                carr[nx][ny] = 2
-                ret += dfs(nx,ny)
-        return ret
-
-    def solve(wall, x, y):
-        global minVal, carr
-        if wall == 3:
-            carr = copy.deepcopy(arr)
-            val = 0
-            for vx, vy in virus_arr:
-                val += dfs(vx, vy)
-            minVal = min(minVal, val)
-            return
-        
-        for i in range(x, N):
-            k = y if i == x else 0
-            for j in range(k,M):
-                if arr[i][j] == 0:
-                    arr[i][j] = 1
-                    solve(wall+1, i, j+1)
-                    arr[i][j] = 0
-
-    solve(0,0,0)
-    return room - minVal - 3
-
-print(solution())
+for _ in range(int(input())):
+    U = [['w'] * 3 for _ in range(3)]
+    D = [['y'] * 3 for _ in range(3)]
+    F = [['r'] * 3 for _ in range(3)]
+    B = [['o'] * 3 for _ in range(3)]
+    L = [['g'] * 3 for _ in range(3)]
+    R = [['b'] * 3 for _ in range(3)]
+    n = int(input())
+    data = list(input().split())
+    for area, dir in data:
+        rotate(area)
+        if dir == '-':
+            rotate(area)
+            rotate(area)
+    for i in range(3):
+        print("".join(j for j in U[i]))
+    # print("======================")
+    # for i in range(3):
+    #     print("".join(j for j in D[i]))
+    # print("======================")
+    # for i in range(3):
+    #     print("".join(j for j in L[i]))
+    # print("======================")
+    # for i in range(3):
+    #     print("".join(j for j in R[i]))
+    # print("======================")
+    # for i in range(3):
+    #     print("".join(j for j in F[i]))
+    # print("======================")
+    # for i in range(3):
+    #     print("".join(j for j in B[i]))
+    # print("======================")

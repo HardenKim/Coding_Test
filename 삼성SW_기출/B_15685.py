@@ -1,7 +1,7 @@
 """
 url : https://www.acmicpc.net/problem/15685
 problem : 드래곤 커브
-algorithm : 브루트 포스
+algorithm : 시뮬레이션
 date : 2020.09.22
 """
 v, ans = [0], 0
