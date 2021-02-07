@@ -7,3 +7,4 @@ date : 2020..
 
 [DFS] : Depth-First-Search, Stack(Last-In-First-Out)과 재귀 함수를 활용하여 depth 기준 먼저 탐색
 [BFS] : Breadth-First-Search, Queue(First-In-First-Out)와 While문을 활용하여 breadth 기준 먼저 탐색
+최소거리 -> 모든 경우를 다 하지 않아도 되므로 BFS
