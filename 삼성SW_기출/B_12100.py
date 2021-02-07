@@ -24,11 +24,10 @@ def solution():
                     if p_val == board[i][j]:        # 이전값과 현재값 같다면
                         board[i][p_idx] = 2*p_val       # 이전값 2배
                         p_val = 0                       # prev_val 0으로 초기화
-                        p_idx += 1                      # prev_idx 오른쪽으로 이동
                     else:                           # 이전값과 현재값 다르면
                         board[i][p_idx] = p_val         # 이전값에 p_val 할당
                         p_val = board[i][j]             # p_val 현재값 할당
-                        p_idx += 1                      # p_idx 오른쪽으로 이동
+                    p_idx += 1                      # p_idx 오른쪽으로 이동
                 board[i][j] = 0                     # 현재값 0으로 초기화
             if p_val != 0:                      # p_val 0이 아니라면
                 board[i][p_idx] = p_val             # 이전값에 p_val 할당
@@ -47,11 +46,10 @@ def solution():
                     if p_val == board[i][q]:            
                         board[i][p_idx] = 2*p_val       
                         p_val = 0                       
-                        p_idx -= 1                      
                     else:                               
-                        board[i][p_idx] = p_val         
-                        p_idx -= 1                      
-                        p_val = board[i][q]             
+                        board[i][p_idx] = p_val  
+                        p_val = board[i][q]            
+                    p_idx -= 1                                             
                 board[i][q] = 0                         
             if p_val != 0: 
                 board[i][p_idx] = p_val                 
@@ -70,11 +68,10 @@ def solution():
                     if p_val == board[j][i]:
                         board[p_idx][i] = 2*p_val
                         p_val = 0
-                        p_idx += 1
                     else:
                         board[p_idx][i] = p_val
                         p_val = board[j][i]
-                        p_idx += 1
+                    p_idx += 1
                 board[j][i] = 0
             if p_val != 0:
                 board[p_idx][i] = p_val
@@ -93,11 +90,10 @@ def solution():
                     if p_val == board[j][i]:            
                         board[p_idx][i] = 2*p_val       
                         p_val = 0                       
-                        p_idx -= 1                      
                     else:                               
-                        board[p_idx][i] = p_val         
-                        p_idx -= 1                      
-                        p_val = board[j][i]             
+                        board[p_idx][i] = p_val                      
+                        p_val = board[j][i]
+                    p_idx -= 1                      
                 board[j][i] = 0     
             if p_val != 0: 
                 board[p_idx][i] = p_val                 
