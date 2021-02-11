@@ -7,28 +7,28 @@ date : 2020.09.19
 
 N, M = map(int, input().split())
 x, y, d = map(int, input().split())
-arr = [list(map(int, input().split())) for _ in range(N)]
-D = {0:(-1,0), 1:(0,1), 2:(1,0), 3:(0,-1)}
+board = [list(map(int, input().split())) for _ in range(N)]
+D = {0:(-1,0), 1:(0,1), 2:(1,0), 3:(0,-1)} # 북동남서
 cnt = 1
 def solution():
     global cnt
     def dfs(x, y, d):
-        global arr, N, M, D, cnt
+        global board, N, M, D, cnt
         for _ in range(4):
-            d = (d+3) % 4
+            d = (d+3) % 4 # 왼쪽으로 이동하기 위해 +3
             nx = x + D[d][0]
             ny = y + D[d][1]
-            if not arr[nx][ny]:
-                arr[nx][ny] = 2
+            if not board[nx][ny]: # 빈 칸일 때
+                board[nx][ny] = 2 # 2로 변경 (청소)
                 cnt += 1
                 dfs(nx, ny, d)
                 return
-        if arr[x-D[d][0]][y-D[d][1]] == 1:
+        if board[x-D[d][0]][y-D[d][1]] == 1: # 뒤가 벽일 경우
             return
         else:
-            dfs(x-D[d][0], y-D[d][1], d)
+            dfs(x-D[d][0], y-D[d][1], d) # 뒤가 빈 칸일 경우
 
-    arr[x][y] = 2
+    board[x][y] = 2 # 처음 현재 칸 청소
     dfs(x,y,d)
     return cnt
     

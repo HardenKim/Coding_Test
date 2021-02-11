@@ -8,15 +8,14 @@ date : 2020.09.17
 def solution(): 
     N = int(input()) 
     L = [list(map(int, input().split())) for _ in range(N)]
-    dp = [0]*N
+    dp = [0]*N # N일 동안 선택할 수 있는 최대 금액
 
     for i in range(N):
-        if i + L[i][0] <= N:
-            dp[i] = L[i][1]
+        if i + L[i][0] <= N: # 퇴사 전에 가능한 상담일 경우
+            dp[i] = L[i][1] # 당일 상담의 금액을 저장
             for j in range(i):
-                if j + L[j][0] <= i:
-                    dp[i] = max(dp[i], dp[j]+L[i][1])
-                print(dp)
+                if j + L[j][0] <= i: # 이전의 상담이 오늘 전에 가능할 경우
+                    dp[i] = max(dp[i], dp[j]+L[i][1]) # (이전의 상담 금액 + 당일 상담 금액)의 최대 값 선택
     return max(dp)
 print(solution())
 
