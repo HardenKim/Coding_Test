@@ -1,49 +1,53 @@
 """
 url : https://www.acmicpc.net/problem/16234
 problem : 인구 이동
-algorithm : BFS
+algorithm : DFS
 date : 2020.10.02
-* 다시 풀어보기 *
 """
-from collections import deque
+import sys
+sys.setrecursionlimit(100000)
+
 N, L, R = map(int, input().split())
 arr = [list(map(int, input().split())) for _ in range(N)]
-di = [[-1,0], [1,0], [0,-1], [0,1]]
-def solution():
-    ret = 0
-    def bfs(start, num):
-        que = deque()
-        que.append(start)
-        union[start[0]][start[1]] = num
-        union_sum = arr[start[0]][start[1]]
-        union_cnt = 1
-        while que:
-            x, y = que.popleft()
-            for i in range(4):
-                nx = x + di[i][0]
-                ny = y + di[i][1]
+dx, dy = [-1, 0, 1, 0], [0, -1, 0, 1]
 
-                if 0 <= nx < N and 0 <= ny < N and union[nx][ny] == -1 and L <= abs(arr[x][y] - arr[nx][ny]) <= R:
-                    union_sum += arr[nx][ny]
-                    union[nx][ny] = num
-                    union_cnt += 1
-                    que.append([nx, ny])
-        return [union_sum, union_cnt]
+def solution():
+    cnt = 0
+    # 인접한 국가와의 인구 차이를 통해 연합 유무 탐색
+    def dfs(x, y):
+        for i in range(4):
+            nx = x + dx[i]
+            ny = y + dy[i]
+
+            if 0 <= nx < N and 0 <= ny < N and check[nx][ny]:
+                temp = abs(arr[x][y] - arr[nx][ny])
+                if L <= temp <= R:
+                    check[nx][ny] = False
+                    union.append([nx, ny])
+                    dfs(nx, ny)
 
     while True:
-        union = [[-1] * N for _ in range(N)]
-        n = 0
-        union_info = {}
+        check = [[True] * N for _ in range(N)] # 탐색 유무
+        flag = True
         for i in range(N):
             for j in range(N):
-                if union[i][j] == -1:
-                    union_info[n] = bfs([i,j], n)
-                    n += 1
-        if n == N*N:    # 국경선 모두 닫힘
+                union = []
+                if check[i][j]:
+                    union.append([i, j]) # 연합 나라 저장
+                    check[i][j] = False
+                    dfs(i, j)
+
+                    if len(union) > 1:
+                        flag = False
+                        avg = sum([arr[x][y] for x, y in union]) // len(union)
+                        for x, y in union:
+                            arr[x][y] = avg
+
+        if flag: # 연합의 개수가 2개 이상인 적이 없으면 종료
             break
-        for i in range(N):
-            for j in range(N):
-                arr[i][j] = union_info[union[i][j]][0] // union_info[union[i][j]][1]
-        ret += 1
-    return ret
+
+        cnt += 1
+
+    return cnt
+
 print(solution())

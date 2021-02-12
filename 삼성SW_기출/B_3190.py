@@ -11,12 +11,12 @@ def solution():
     N = int(input())
     K = int(input())
     B = [['#']*(N+2)] + [['#'] + ['0']*N + ['#'] for _ in range(N)] + [['#']*(N+2)]
-    for i in range(K):
+    for _ in range(K):
         x, y = map(int, input().split())
         B[x][y] = '*'
     L = int(input())
     L_dic = {}
-    for i in range(L):
+    for _ in range(L):
         k, v = input().split()
         L_dic[int(k)] = v
     
